@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Christina — For the Dreamers</title>
+<meta name="description" content="A UC Riverside psychology student on pressure, doubt, and the breakdown that changed her family's mind about therapy.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#FBF9F4; --paper-2:#F1EDE3; --ink:#15140F; --graphite:#6B675E; --rule:#E0DACE;
+  --blue:#1E33BE; --blue-deep:#16257F;
+  --serif:"Fraunces",Georgia,serif; --sans:"Inter",-apple-system,Helvetica,Arial,sans-serif;
+  --gut:clamp(20px,5vw,64px); --sec:clamp(64px,9vw,120px);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:400;margin:0;letter-spacing:-0.02em}
+p{margin:0}
+.wrap{max-width:900px;margin:0 auto;padding:0 var(--gut)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.preview{background:var(--ink);color:#C9C5BA;font-size:13px;line-height:1.5;padding:9px var(--gut)}
+.preview b{color:var(--paper);font-weight:500}
+nav{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px solid var(--rule)}
+.navin{max-width:1240px;margin:0 auto;padding:0 var(--gut);display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:var(--serif);font-size:21px;text-decoration:none}
+.btn{display:inline-block;font-family:var(--sans);font-size:15px;padding:13px 22px;border-radius:2px;text-decoration:none;border:1px solid var(--ink);cursor:pointer;background:none}
+.btn-solid{background:var(--blue);border-color:var(--blue);color:#fff}
+
+.storytop{padding:clamp(44px,7vw,72px) 0 0}
+.eyebrow{font-size:14px;color:var(--blue)}
+h1{font-size:clamp(2.2rem,5vw,3.3rem);line-height:1.08;font-weight:300;margin-top:14px;max-width:18ch}
+.byline{display:flex;flex-wrap:wrap;gap:6px 10px;font-size:15px;color:var(--graphite);margin-top:20px;padding-bottom:28px;border-bottom:1px solid var(--rule)}
+.byline b{font-weight:500;color:var(--ink)}
+.byline span{color:var(--rule)}
+.intro{font-family:var(--serif);font-size:1.2rem;line-height:1.55;color:#33302A;margin-top:26px}
+
+.vidlink{display:block;text-decoration:none;margin-top:36px;aspect-ratio:16/9;background:var(--paper-2);border:1px solid var(--rule);position:relative;overflow:hidden}
+.vidlink::after{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(135deg,transparent 0 13px,rgba(21,20,15,.045) 13px 14px)}
+.vidlink .inner{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+.play{width:64px;height:64px;border-radius:50%;background:var(--paper);border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;transition:background .18s,border-color .18s}
+.play::after{content:"";width:0;height:0;margin-left:5px;border-left:18px solid var(--ink);border-top:11px solid transparent;border-bottom:11px solid transparent}
+.vidlink:hover .play{background:var(--blue);border-color:var(--blue)}
+.vidlink:hover .play::after{border-left-color:#fff}
+.vidlink .cap{font-size:14px;color:var(--graphite)}
+
+section{border-top:1px solid var(--rule)}
+.pad{padding:var(--sec) 0}
+.qa{display:flex;flex-direction:column;gap:40px}
+.q{font-size:15px;font-weight:500;color:var(--blue)}
+.a{font-family:var(--serif);font-size:1.22rem;line-height:1.55;font-weight:300;margin-top:10px;max-width:66ch}
+
+.lessons-h{font-size:clamp(1.7rem,3.2vw,2.3rem);font-weight:300;margin-bottom:36px}
+.lesson-row{display:flex;gap:22px;padding:22px 0;border-top:1px solid var(--rule)}
+.lesson-row:first-child{border-top:none;padding-top:0}
+.num{font-family:var(--serif);font-size:1.1rem;color:var(--blue);min-width:28px}
+.lesson-row p{font-size:1.05rem;line-height:1.5;max-width:56ch}
+
+.pillrow{display:flex;flex-wrap:wrap;gap:10px}
+.pill{font-size:14px;padding:9px 16px;border:1px solid var(--rule);border-radius:2px;text-decoration:none;color:var(--ink)}
+.pill:hover{border-color:var(--blue);color:var(--blue)}
+
+.related-h{font-size:clamp(1.7rem,3.2vw,2.3rem);font-weight:300;margin-bottom:36px}
+.related{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.rcard .thumb{aspect-ratio:16/9;background:var(--paper-2);border:1px solid var(--rule);position:relative}
+.rcard .thumb::after{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(135deg,transparent 0 13px,rgba(21,20,15,.045) 13px 14px)}
+.rcard h3{font-size:1.08rem;line-height:1.25;margin-top:14px}
+.rcard p{font-size:14px;color:var(--graphite);margin-top:8px}
+
+footer{background:var(--ink);color:#8F8B81;padding:44px var(--gut);font-size:14px;text-align:center}
+
+@media (max-width:700px){.related{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="preview"><b>Design preview.</b> Real interview content — Christina's actual video and cleaned quotes. Portrait, last name, and related stories are still placeholders.</div>
+
+<nav><div class="navin">
+  <a class="logo" href="#">For the Dreamers</a>
+  <a class="btn btn-solid" href="#">Share Your Story</a>
+</div></nav>
+
+<article class="storytop wrap">
+  <p class="eyebrow">Careers · Education</p>
+  <h1>The breakdown she thought was a mistake ended up changing her family's mind.</h1>
+  <div class="byline">
+    <b>Christina</b><span>·</span>
+    <span>Fourth-year psychology major, pre-med track</span><span>·</span>
+    <span>UC Riverside</span><span>·</span>
+    <span>Riverside, CA</span>
+  </div>
+  <p class="intro">Christina came into college wanting to be a therapist. Somewhere between organic chemistry and a breakdown she was sure would ruin everything, she ended up on a different path — one she's still not entirely certain about, and has made peace with that.</p>
+  <a class="vidlink" href="https://youtu.be/HQm89UyLCwM" target="_blank" rel="noopener">
+    <div class="inner"><span class="play"></span><span class="cap">Watch the full interview on YouTube · ~20 min</span></div>
+  </a>
+</article>
+
+<section><div class="wrap pad">
+  <div class="qa">
+    <div><p class="q">What got you interested in psychology?</p><p class="a">Children's mental health, and mental health in general — how we act, why we act that way. That's what pulled me in.</p></div>
+    <div><p class="q">Did you feel pressure to have your career figured out early?</p><p class="a">Some came from my family — I'm from a traditional Asian household, where there's an expectation to know your path early. But honestly, I put more pressure on myself than anyone else did.</p></div>
+    <div><p class="q">What surprised you about psychology as a major?</p><p class="a">The math. I assumed it would be pure humanities, but between general chemistry and the STEM requirements for pre-med, there was a lot more logic and rigor than I expected.</p></div>
+    <div><p class="q">Did you ever doubt your path?</p><p class="a">Junior year, organic chemistry nearly convinced me I'd picked the wrong one. I thought about business, nursing, therapy instead of psychiatry. I've realized those doubts are just part of being 18 to 22 — you don't actually know who you want to be yet, no matter how sure you sound.</p></div>
+    <div><p class="q">What mistake ended up helping you the most?</p><p class="a">I had a full breakdown in front of my family. At the time I thought it was the worst thing I could've done — my family doesn't always know how to handle emotions like that. But it's what got me into therapy. Saying how I actually felt changed how open they were about mental health after that.</p></div>
+    <div><p class="q">What would you tell a high schooler interested in psychology who doesn't know where to start?</p><p class="a">Watch videos, talk to people already in the field, look into the different areas within it. I still don't know exactly which direction I'm headed — just follow whatever keeps pulling your interest.</p></div>
+    <div><p class="q">One piece of advice to your past self?</p><p class="a">Slow down and actually reflect. My first two years of college I only looked forward — next thing, next thing — and never looked back at how far I'd come.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap pad">
+  <h2 class="lessons-h">What we learned</h2>
+  <div class="lesson-row"><span class="num">01</span><p>The pressure to have it figured out usually comes from yourself, not just from family.</p></div>
+  <div class="lesson-row"><span class="num">02</span><p>A hard class doesn't mean you're on the wrong path.</p></div>
+  <div class="lesson-row"><span class="num">03</span><p>What feels like a personal failure can be the thing that opens everything up.</p></div>
+  <div class="lesson-row"><span class="num">04</span><p>Knowing yourself isn't a one-time task — it takes the whole ride.</p></div>
+</div></section>
+
+<section><div class="wrap pad">
+  <p class="eyebrow" style="margin-bottom:16px">Topics in this story</p>
+  <div class="pillrow">
+    <a class="pill" href="#">Careers</a>
+    <a class="pill" href="#">Career Advice</a>
+    <a class="pill" href="#">Education</a>
+    <a class="pill" href="#">Mistakes &amp; Lessons</a>
+  </div>
+</div></section>
+
+<section><div class="wrap pad">
+  <h2 class="related-h">Keep exploring</h2>
+  <div class="related">
+    <div class="rcard"><div class="thumb"></div><h3>Pricing was the thing she got wrong for two years.</h3><p>Jane Doe — Founder, Example Bakery</p></div>
+    <div class="rcard"><div class="thumb"></div><h3>He built the first version of the product in a school library.</h3><p>Sample Name — Founder, Demo Co.</p></div>
+    <div class="rcard"><div class="thumb"></div><h3>Her first fifty customers came from one conversation a day.</h3><p>Sample Name — Founder, Demo Studio</p></div>
+  </div>
+</div></section>
+
+<footer>For the Dreamers · Turning experience into access.</footer>
+
+</body>
+</html>
