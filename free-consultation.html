@@ -47,9 +47,26 @@ main{padding-bottom:clamp(64px,8vw,110px)}
 .consult-book p.lead{font-family:var(--serif);font-size:1.3rem;font-weight:300}
 .consult-book .btn{margin-top:20px}
 .consult-book .fine{font-size:13px;color:var(--graphite);margin-top:16px}
+.calloutnote{margin-top:26px;padding:2px 0 2px 18px;border-left:2px solid var(--blue)}
+.calloutnote p{font-size:14px;line-height:1.65;color:var(--graphite);max-width:56ch}
+.calloutnote b{color:#33302A;font-weight:600}
 
 footer{background:var(--ink);color:#8F8B81;padding:44px var(--gut);font-size:14px;text-align:center}
 @media (max-width:760px){.consult-grid{grid-template-columns:1fr}}
+
+footer{background:var(--ink);color:#B4B0A5;padding:clamp(48px,7vw,72px) 0 32px;font-size:15px}
+.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px}
+.fgrid h4{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--paper);margin:0 0 16px;letter-spacing:.02em}
+.fgrid a{display:block;text-decoration:none;padding:5px 0;color:#B4B0A5}
+.fgrid a:hover{color:var(--paper)}
+.fbrand .logo{color:var(--paper);font-size:23px;font-family:var(--serif)}
+.fbrand p{font-family:var(--serif);margin-top:12px;color:#8F8B81;max-width:26ch}
+.fbot{border-top:1px solid rgba(251,249,244,.14);margin-top:40px;padding-top:20px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;color:#8F8B81}
+.fbot div{display:flex;gap:22px}
+.fbot a{text-decoration:none;color:#8F8B81}
+.fbot a:hover{color:var(--paper)}
+@media (max-width:700px){.fgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:460px){.fgrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -64,8 +81,8 @@ footer{background:var(--ink);color:#8F8B81;padding:44px var(--gut);font-size:14p
 <main class="wrap">
   <div style="padding-top:clamp(44px,7vw,72px)">
     <p class="eyebrow">For The Dreamers Growth Lab</p>
-    <h1 style="font-size:clamp(2.2rem,5vw,3.2rem);font-weight:300;margin-top:14px;max-width:18ch">Book a free consultation.</h1>
-    <p class="intro" style="margin-top:20px;max-width:60ch">A free, no-obligation conversation about the biggest challenge your business is facing right now — weak foot traffic, unclear branding, a website that isn't working, whatever it is.</p>
+    <h1 style="font-size:clamp(2.2rem,5vw,3.2rem);font-weight:300;margin-top:14px;max-width:20ch">Start with a Growth Lab consultation.</h1>
+    <p class="intro" style="margin-top:20px;max-width:62ch">This free conversation is where the Growth Lab gets to know your business and figures out what's actually holding it back — weak foot traffic, unclear branding, a website that isn't working, whatever it is. No pitch, no pressure, no cost.</p>
   </div>
 
   <div class="consult-grid">
@@ -74,10 +91,13 @@ footer{background:var(--ink);color:#8F8B81;padding:44px var(--gut);font-size:14p
       <ul class="clist">
         <li>About 30 minutes, one on one</li>
         <li>We listen first — you tell us what's actually going on</li>
-        <li>If it's a fit, we talk through what a Growth Lab sprint would look like</li>
+        <li>If it's a fit, we map out what a Growth Lab sprint would look like</li>
         <li>If it's not a fit, you still walk away with a clear next step</li>
-        <li>For the Dreamers doesn't take equity or purchase businesses — this is strategy support, not an offer</li>
       </ul>
+
+      <div class="calloutnote">
+        <p><b>Growth Lab</b> is the conversation and the strategy — this consultation, and the sprint that can follow it. Once there's a plan, <b>For The Dreamers Creative</b> is who actually builds it: the website, photography, or materials your business needs to carry it out. For The Dreamers doesn't take equity, purchase businesses, or attempt to resell them — this is strategy and hands-on support, not an offer.</p>
+      </div>
     </div>
     <div class="consult-book">
       <p class="lead">Pick a time that works for you.</p>
@@ -87,7 +107,41 @@ footer{background:var(--ink);color:#8F8B81;padding:44px var(--gut);font-size:14p
   </div>
 </main>
 
-<footer>For the Dreamers &middot; Turning experience into access.</footer>
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div class="fbrand">
+        <span class="logo">For the Dreamers</span>
+        <p>Turning experience into access.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="https://www.forthedreamers.net/index.html#stories">Stories</a>
+        <a href="https://www.forthedreamers.net/index.html#topics">Explore</a>
+        <a href="https://www.forthedreamers.net/free-consultation.html">Free Consultation</a>
+      </div>
+      <div>
+        <h4>Project</h4>
+        <a href="https://www.forthedreamers.net/index.html#mission">About</a>
+        <a href="https://www.forthedreamers.net/index.html#involved">Get Involved</a>
+        <a href="https://www.forthedreamers.net/index.html#">Contact</a>
+      </div>
+      <div>
+        <h4>Follow</h4>
+        <a href="https://www.instagram.com/forthedreamersmedia/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.tiktok.com/@forthedreamersmedia" target="_blank" rel="noopener">TikTok</a>
+        <a href="https://www.youtube.com/@ForTheDreamersMedia" target="_blank" rel="noopener">YouTube</a>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>&copy; 2026 For the Dreamers</span>
+      <div>
+        <a href="https://www.forthedreamers.net/index.html#">Privacy</a>
+        <a href="https://www.forthedreamers.net/index.html#">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
