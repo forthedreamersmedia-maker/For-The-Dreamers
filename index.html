@@ -81,6 +81,8 @@ nav{position:sticky;top:0;z-index:50;background:var(--paper);border-bottom:1px s
 .herotop{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(28px,5vw,72px);align-items:end;margin-bottom:clamp(36px,5vw,60px)}
 h1{font-size:clamp(2.9rem,7.4vw,5.4rem);line-height:0.97;font-weight:300;max-width:13ch}
 .lede{font-size:clamp(1.05rem,1.5vw,1.2rem);color:var(--graphite);max-width:46ch}
+.eyebrow{font-size:14px;color:var(--blue)}
+.intro{font-family:var(--serif);font-size:1.1rem;line-height:1.55;color:#33302A}
 .herobtns{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
 .featbar{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(20px,4vw,56px);align-items:end;border-top:2px solid var(--ink);margin-top:18px;padding-top:16px}
 .featbar .tag{font-size:13px;color:var(--blue)}
@@ -262,28 +264,38 @@ footer{background:var(--ink);color:#B4B0A5;padding:clamp(56px,7vw,88px) 0 40px;f
 
 <section id="stories"><div class="wrap pad">
   <div class="shead">
-    <h2>Learn from people who have already taken the first step.</h2>
-    <a class="rlink" href="#">See all interviews</a>
+    <div>
+      <p class="eyebrow">Season One &middot; Guest Applications Open</p>
+      <h2 style="margin-top:12px">The next story could be yours.</h2>
+      <p class="intro" style="margin-top:16px;max-width:58ch">We're building our first season with founders, professionals, students, and creators willing to explain how they actually began — including the mistakes, pivots, and lessons that usually stay behind closed doors.</p>
+      <div class="herobtns" style="margin-top:26px">
+        <a class="btn btn-solid" href="share-your-story.html">Share Your Story</a>
+        <a class="btn btn-line" href="https://youtu.be/HQm89UyLCwM" target="_blank" rel="noopener noreferrer">Watch Our First Interview</a>
+      </div>
+    </div>
   </div>
   <div class="stories">
-    <article class="card">
-      <a href="#" class="vid" style="text-decoration:none"><span class="sample">sample</span><span class="play"></span><span class="dur">14:20</span></a>
-      <h3>Pricing was the thing she got wrong for two years.</h3>
-      <p class="d">A bakery owner on charging what the work is worth, and what it cost her to learn that late.</p>
-      <div class="pills"><span class="pill">Pricing</span><span class="pill">Food &amp; Hospitality</span></div>
-    </article>
-    <article class="card">
-      <a href="#" class="vid" style="text-decoration:none"><span class="sample">sample</span><span class="play"></span><span class="dur">22:05</span></a>
-      <h3>He built the first version of the product in a school library.</h3>
-      <p class="d">On starting with no money, no team, and a laptop that belonged to the district.</p>
-      <div class="pills"><span class="pill">Starting a Business</span><span class="pill">Technology</span></div>
-    </article>
-    <article class="card">
-      <a href="#" class="vid" style="text-decoration:none"><span class="sample">sample</span><span class="play"></span><span class="dur">11:37</span></a>
-      <h3>Her first fifty customers came from one conversation a day.</h3>
-      <p class="d">A designer on finding work before anyone knows your name, without paying for ads.</p>
-      <div class="pills"><span class="pill">Finding Customers</span><span class="pill">Creative</span></div>
-    </article>
+    <a class="card" href="share-your-story.html" style="text-decoration:none;color:inherit" aria-label="Founder Stories — apply to share your story about turning your idea into something real. Opens the Share Your Story form.">
+      <div class="vid" aria-hidden="true"><span class="sample">Founder Stories</span><span class="dur">Guest applications open</span></div>
+      <h3>What did it take to turn your idea into something real?</h3>
+      <p class="d">Conversations about first customers, difficult decisions, limited resources, and building something before anyone else could see the vision.</p>
+      <div class="pills"><span class="pill">Starting a Business</span><span class="pill">Growth</span></div>
+      <span class="rlink" aria-hidden="true" style="display:inline-block;margin-top:16px">Share Your Story &rarr;</span>
+    </a>
+    <a class="card" href="share-your-story.html" style="text-decoration:none;color:inherit" aria-label="Career Paths — apply to share your story about how you found your way into your work. Opens the Share Your Story form.">
+      <div class="vid" aria-hidden="true"><span class="sample">Career Paths</span><span class="dur">Guest applications open</span></div>
+      <h3>How did you find your way into the work you do?</h3>
+      <p class="d">The choices, unexpected turns, sacrifices, and opportunities that shaped a career — and the advice you wish you had received at the beginning.</p>
+      <div class="pills"><span class="pill">Careers</span><span class="pill">Education</span></div>
+      <span class="rlink" aria-hidden="true" style="display:inline-block;margin-top:16px">Share Your Story &rarr;</span>
+    </a>
+    <a class="card" href="share-your-story.html" style="text-decoration:none;color:inherit" aria-label="Lessons Worth Sharing — apply to share a lesson you wish someone had told you sooner. Opens the Share Your Story form.">
+      <div class="vid" aria-hidden="true"><span class="sample">Lessons Worth Sharing</span><span class="dur">Guest applications open</span></div>
+      <h3>What do you wish someone had told you sooner?</h3>
+      <p class="d">Honest conversations about failure, resilience, leadership, and the lessons that only became clear through experience.</p>
+      <div class="pills"><span class="pill">Mistakes &amp; Lessons</span><span class="pill">Leadership</span></div>
+      <span class="rlink" aria-hidden="true" style="display:inline-block;margin-top:16px">Share Your Story &rarr;</span>
+    </a>
   </div>
 </div></section>
 
