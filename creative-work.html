@@ -41,6 +41,9 @@ main{padding-bottom:clamp(64px,8vw,110px)}
 .pshot{aspect-ratio:16/10;background:var(--paper-2);position:relative;display:flex;align-items:center;justify-content:center}
 .pshot::after{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(135deg,transparent 0 13px,rgba(21,20,15,.045) 13px 14px)}
 .pshot span{position:relative;font-size:13px;color:var(--graphite);background:var(--paper-2);padding:6px 12px}
+.pshot.has-img::after{display:none}
+.pshot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;display:block}
+.pshot img.fit-contain{object-fit:contain;object-position:center}
 .pbody{padding:clamp(22px,3vw,28px);display:flex;flex-direction:column;gap:12px;flex:1}
 .ptag{display:flex;gap:8px;flex-wrap:wrap}
 .pill{font-size:12px;line-height:1;padding:6px 10px;border:1px solid var(--rule);border-radius:2px;color:var(--graphite)}
@@ -137,7 +140,9 @@ const PROJECTS = [
     created: "A local platform designed to connect teen workers with nearby opportunities.",
     tools: "Website strategy, user-experience planning, web design and development, brand positioning, platform structure",
     result: null,
-    liveUrl: "https://www.taskteens.com"
+    liveUrl: "https://www.taskteens.com",
+    image: "images/work-taskteens.jpg",
+    imageAlt: "TaskTeens homepage: Making Job Hunting Easier For Teens, over the San Francisco skyline"
   },
   {
     title: "For the Dreamers",
@@ -147,7 +152,23 @@ const PROJECTS = [
     created: "The editorial brand and website you're on right now — from the interview format to the Growth Lab and Creative structure.",
     tools: "Brand strategy, editorial web design, website development, content architecture, interview branding, digital-media strategy",
     result: null,
-    liveUrl: "https://www.forthedreamers.net"
+    liveUrl: "https://www.forthedreamers.net",
+    image: "images/work-for-the-dreamers.png",
+    imageAlt: "For the Dreamers logo: a person inside a lightbulb",
+    imageFit: "contain",
+    imageBg: "#E4E3DF"
+  },
+  {
+    title: "Long Life Vegi House",
+    classification: "Owned Project",
+    type: "Restaurant website",
+    challenge: "A Berkeley vegetarian restaurant needed one place online for its menus, its story and its weekend pop-up café.",
+    created: "A bilingual English and Chinese website for Long Life Vegi House, with menu, about and café pages.",
+    tools: "Web design and development, bilingual branding, menu layout, site structure",
+    result: null,
+    liveUrl: "https://www.longlifevegihouse.com",
+    image: "images/work-long-life-vegi-house.jpg",
+    imageAlt: "Long Life Vegi House homepage: the restaurant name in English and Chinese over a flaming wok"
   },
   {
     title: "Café Social Media & Launch Marketing",
@@ -157,7 +178,11 @@ const PROJECTS = [
     created: "Marketing and launch content for the café through TikTok and organic social content, including product photography and menu-launch marketing.",
     tools: "Social-media strategy, short-form video, product photography, menu-launch marketing, customer-conversion strategy",
     result: null,
-    liveUrl: null
+    liveUrl: null,
+    image: "images/work-long-life-cafe-tiktok.jpg",
+    imageAlt: "Long Life Vegi House Cafe TikTok profile: 1,221 followers, 27K likes, Sunday pop-ups",
+    imageFit: "contain",
+    imageBg: "#000"
   }
 ];
 
@@ -165,7 +190,13 @@ function projectCard(p) {
   if (!p.title || !p.classification || !p.challenge || !p.created) return "";
   const chipClass = p.classification === "Concept Project" ? "pill" : "pill blue";
   let html = '<article class="pcard">';
-  html += '<div class="pshot"><span>Screenshot coming soon</span></div>';
+  if (p.image) {
+    html += '<div class="pshot has-img"' + (p.imageBg ? ' style="background:' + p.imageBg + '"' : '') + '>';
+    html += '<img src="' + p.image + '" alt="' + (p.imageAlt || p.title) + '" loading="lazy"' + (p.imageFit === 'contain' ? ' class="fit-contain"' : '') + '>';
+    html += '</div>';
+  } else {
+    html += '<div class="pshot"><span>Screenshot coming soon</span></div>';
+  }
   html += '<div class="pbody">';
   html += '<div class="ptag"><span class="' + chipClass + '">' + p.classification + '</span></div>';
   html += '<h3>' + p.title + '</h3>';
