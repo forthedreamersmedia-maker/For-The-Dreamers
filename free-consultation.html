@@ -54,6 +54,24 @@ main{padding-bottom:clamp(64px,8vw,110px)}
 footer{background:var(--ink);color:#8F8B81;padding:44px var(--gut);font-size:14px;text-align:center}
 @media (max-width:760px){.consult-grid{grid-template-columns:1fr}}
 
+.applywrap{margin-top:clamp(56px,7vw,80px);border-top:1px solid var(--rule);padding-top:clamp(40px,5vw,56px)}
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:22px}
+.field label{font-size:14px;color:var(--graphite)}
+.req{color:var(--blue);margin-left:3px}
+.opt{color:#A8A296;font-weight:400}
+.field input,.field textarea{
+  font-family:var(--sans);font-size:15px;color:var(--ink);background:var(--paper);
+  border:1px solid var(--rule);border-radius:2px;padding:11px 13px;width:100%;
+}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--blue)}
+.field textarea{resize:vertical}
+.frow2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.appform{max-width:600px;margin-top:32px}
+#gl-status{margin-top:14px;font-size:14px}
+#gl-status.ok{color:var(--blue)}
+#gl-status.err{color:#B3261E}
+@media (max-width:600px){.frow2{grid-template-columns:1fr}}
+
 footer{background:var(--ink);color:#B4B0A5;padding:clamp(48px,7vw,72px) 0 32px;font-size:15px}
 .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px}
 .fgrid h4{font-family:var(--sans);font-size:13px;font-weight:500;color:var(--paper);margin:0 0 16px;letter-spacing:.02em}
@@ -104,6 +122,47 @@ footer{background:var(--ink);color:#B4B0A5;padding:clamp(48px,7vw,72px) 0 32px;f
       <a class="btn btn-solid" href="#" target="_blank" rel="noopener">Book on Calendly</a>
       <p class="fine">Opens in a new tab. Prefer email instead? Write to <a class="rlink" href="mailto:forthedreamers.media@gmail.com">forthedreamers.media@gmail.com</a>.</p>
     </div>
+  <div class="applywrap">
+    <p class="eyebrow">Prefer to apply in writing?</p>
+    <h2 style="font-size:clamp(1.5rem,2.8vw,2rem);font-weight:300;margin-top:12px;max-width:22ch">Send us a quick application instead.</h2>
+    <p class="intro" style="margin-top:16px;max-width:56ch;font-size:1.05rem">If picking a time isn't convenient right now, tell us a bit about your business below and we'll reach out to schedule.</p>
+
+    <form class="appform" id="gl-form" action="https://formspree.io/f/mrpbadae" method="POST">
+      <div class="frow2">
+        <div class="field">
+          <label for="gl-business">Business name<span class="req">*</span></label>
+          <input id="gl-business" name="business" type="text" required>
+        </div>
+        <div class="field">
+          <label for="gl-contact">Your name<span class="req">*</span></label>
+          <input id="gl-contact" name="contact_name" type="text" required>
+        </div>
+      </div>
+      <div class="frow2">
+        <div class="field">
+          <label for="gl-email">Email<span class="req">*</span></label>
+          <input id="gl-email" name="email" type="email" required>
+        </div>
+        <div class="field">
+          <label for="gl-phone">Phone <span class="opt">(optional)</span></label>
+          <input id="gl-phone" name="phone" type="tel">
+        </div>
+      </div>
+      <div class="field">
+        <label for="gl-location">Location<span class="req">*</span></label>
+        <input id="gl-location" name="location" type="text" required>
+      </div>
+      <div class="field">
+        <label for="gl-challenge">What's the biggest challenge your business is facing right now?<span class="req">*</span></label>
+        <textarea id="gl-challenge" name="challenge" rows="4" required></textarea>
+      </div>
+      <div class="field">
+        <label for="gl-best-time">Best time or way to reach you <span class="opt">(optional)</span></label>
+        <input id="gl-best-time" name="best_time" type="text">
+      </div>
+      <button class="btn btn-solid" type="submit" id="gl-submit">Send Application</button>
+      <p id="gl-status" role="status" aria-live="polite"></p>
+    </form>
   </div>
 </main>
 
@@ -142,6 +201,45 @@ footer{background:var(--ink);color:#B4B0A5;padding:clamp(48px,7vw,72px) 0 32px;f
     </div>
   </div>
 </footer>
+
+<script>
+const glForm = document.getElementById('gl-form');
+const glBtn = document.getElementById('gl-submit');
+const glStatus = document.getElementById('gl-status');
+let glSubmitting = false;
+
+glForm.addEventListener('submit', function(e){
+  e.preventDefault();
+  if (glSubmitting) return;
+  glSubmitting = true;
+  glBtn.disabled = true;
+  glBtn.textContent = 'Sending...';
+  glStatus.className = '';
+  glStatus.textContent = '';
+
+  fetch(glForm.action, {
+    method: 'POST',
+    body: new FormData(glForm),
+    headers: { 'Accept': 'application/json' }
+  }).then(function(res){
+    if (res.ok) {
+      glStatus.className = 'ok';
+      glStatus.textContent = "Thanks — we'll be in touch to schedule a time.";
+      glForm.reset();
+    } else {
+      glStatus.className = 'err';
+      glStatus.textContent = "Something went wrong sending this. Try again, or email forthedreamers.media@gmail.com directly.";
+    }
+  }).catch(function(){
+    glStatus.className = 'err';
+    glStatus.textContent = "Something went wrong sending this. Try again, or email forthedreamers.media@gmail.com directly.";
+  }).finally(function(){
+    glSubmitting = false;
+    glBtn.disabled = false;
+    glBtn.textContent = 'Send Application';
+  });
+});
+</script>
 
 </body>
 </html>
