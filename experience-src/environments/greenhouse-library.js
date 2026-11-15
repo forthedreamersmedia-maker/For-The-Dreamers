@@ -24,7 +24,7 @@ function woodTex(base, repeat) {
 const rnd = (a, b) => a + Math.random() * (b - a);
 
 const W = 3, Z0 = 6.5, Z1 = -14, EAVE = 3.2, RIDGE = 5.4;   // room: x ±3, z 6.5 … -14
-const BOOK = { x: 0.08, y: 0.795, z: -9.05 };               // Story 001, open on the table
+const BOOK = { x: -0.26, y: 0.795, z: -9.05 };               // Story 001, open on the table
 
 export const greenhouseLibrary = {
   theme: 'light',
@@ -32,8 +32,8 @@ export const greenhouseLibrary = {
   bloom: 0.07,
   fog: { color: 0xeef1e4, corridor: 0.0035, hall: 0.0035 },
   path: {
-    pos: [[0, 1.65, 5.0], [-0.35, 1.62, 1.4], [-1.3, 1.58, -2.6], [-1.35, 1.56, -5.3], [-1.0, 1.5, -7.0], [-0.62, 1.4, -7.95]],
-    look: [[0, 1.55, -6], [0.1, 1.3, -8], [0.5, 1.0, -8], [0.7, 0.9, -8.6], [0.25, 0.85, -9.0], [0.3, 0.84, -9.1]],
+    pos: [[0, 1.65, 5.0], [-0.35, 1.62, 1.4], [-1.3, 1.58, -2.6], [-1.35, 1.56, -5.3], [-1.7, 1.6, -6.9], [-2.2, 1.62, -7.55]],
+    look: [[0, 1.55, -6], [0.1, 1.3, -8], [0.5, 1.0, -8], [0.7, 0.9, -8.6], [-0.3, 0.98, -8.9], [0.1, 0.95, -9.3]],
     timing: [[0, 0], [0.06, 0.02], [0.5, 0.6], [0.58, 0.63], [0.88, 1], [1, 1]],
   },
   arrive: 0.9,
@@ -177,10 +177,38 @@ export const greenhouseLibrary = {
       c.fillStyle = 'rgba(30,28,24,0.6)';
       for (; y < h - 50; y += 17) c.fillRect(40, y, (w - 80) * (Math.random() < 0.15 ? 0.55 : 1), 2.2);
     });
-    openBook(BOOK.x, BOOK.y, BOOK.z, 0.12, [pageTex(true), pageTex(false)], 1.25);
+    openBook(BOOK.x, BOOK.y, BOOK.z, -Math.PI / 2, [pageTex(true), pageTex(false)], 1.2);
     openBook(-0.2, 0.795, -6.2, -0.5, null);
-    const pencil = box(0.008, 0.008, 0.17, M({ color: 0xc9a25a }), BOOK.x + 0.42, 0.8, BOOK.z + 0.05, false); pencil.rotation.y = 0.7;
-    const cup = new THREE.Mesh(new THREE.CylinderGeometry(0.042, 0.034, 0.09, 24), white); cup.position.set(BOOK.x - 0.45, 0.835, BOOK.z - 0.12); cup.castShadow = true; g.add(cup);
+    const pencil = box(0.008, 0.008, 0.17, M({ color: 0xc9a25a }), BOOK.x + 0.05, 0.8, BOOK.z + 0.47, false); pencil.rotation.y = 1.2;
+    const cup = new THREE.Mesh(new THREE.CylinderGeometry(0.042, 0.034, 0.09, 24), white); cup.position.set(BOOK.x + 0.12, 0.835, BOOK.z - 0.5); cup.castShadow = true; g.add(cup);
+
+    // ---------- the student, reading Story 001 (seen from behind — no face is shown) ----------
+    const st = new THREE.Group(); st.position.set(-0.98, 0.03, BOOK.z); st.rotation.y = -Math.PI / 2;
+    const knit = M({ color: 0xb9c2a6, roughness: 0.95 }), denim = M({ color: 0x3d4f6b, roughness: 0.9 });
+    const hair = M({ color: 0x1a1512, roughness: 0.5 }), skin = M({ color: 0xc99d7e, roughness: 0.7 });
+    const up = new THREE.Vector3(0, 1, 0);
+    const limb = (a, b, r, mat) => {
+      const A = new THREE.Vector3(...a), B = new THREE.Vector3(...b), d = B.clone().sub(A);
+      const m = new THREE.Mesh(new THREE.CapsuleGeometry(r, d.length(), 8, 18), mat);
+      m.position.copy(A).addScaledVector(d, 0.5); m.quaternion.setFromUnitVectors(up, d.normalize());
+      m.castShadow = true; m.receiveShadow = true; st.add(m); return m;
+    };
+    const ball = (r, p, mat, sc) => { const m = new THREE.Mesh(new THREE.SphereGeometry(r, 28, 20), mat); m.position.set(...p); if (sc) m.scale.set(...sc); m.castShadow = true; st.add(m); return m; };
+    for (const s of [-1, 1]) {
+      limb([s * 0.09, 0.56, 0.14], [s * 0.1, 0.56, -0.26], 0.075, denim);
+      limb([s * 0.1, 0.52, -0.28], [s * 0.1, 0.1, -0.24], 0.056, denim);
+      limb([s * 0.2, 1.02, 0.06], [s * 0.26, 0.82, -0.1], 0.052, knit);
+      limb([s * 0.26, 0.82, -0.12], [s * 0.11, 0.83, -0.42], 0.043, knit);
+      ball(0.04, [s * 0.09, 0.83, -0.46], skin, [1, 0.6, 1.2]);
+    }
+    limb([0, 0.63, 0.16], [0, 0.98, 0.07], 0.15, knit).scale.set(1.15, 1, 0.8);
+    limb([-0.17, 1.03, 0.06], [0.17, 1.03, 0.06], 0.078, knit);
+    limb([0, 1.03, 0.05], [0, 1.13, 0.03], 0.045, skin);
+    ball(0.1, [0, 1.23, 0.0], skin, [0.9, 1.1, 1]);
+    ball(0.109, [0, 1.245, 0.025], hair, [0.96, 1.08, 1.03]);
+    limb([0, 1.2, 0.08], [0, 0.88, 0.16], 0.085, hair).scale.set(1.4, 1, 0.5);
+    g.add(st);
+    chair(-0.98, BOOK.z, -Math.PI / 2);
 
     // ---------- plants ----------
     const leafShape = new THREE.Shape(); leafShape.moveTo(0, 0); leafShape.quadraticCurveTo(0.07, 0.07, 0, 0.24); leafShape.quadraticCurveTo(-0.07, 0.07, 0, 0);
@@ -196,7 +224,7 @@ export const greenhouseLibrary = {
     const pot = (x, z, r, h, y0 = 0) => { const p = new THREE.Mesh(new THREE.CylinderGeometry(r, r * 0.72, h, 20), terracotta); p.position.set(x, y0 + h / 2, z); p.castShadow = true; p.receiveShadow = true; g.add(p); };
     const k = ctx.mobile ? 0.5 : 1;
     for (let z = 0; z > Z1 + 0.5; z -= rnd(0.9, 1.5)) {            // along the glass wall
-      const big = Math.random() < 0.45, x = -W + rnd(0.45, 0.8);
+      const big = Math.random() < 0.45 && (z > -6.2 || z < -10.6), x = -W + rnd(0.45, 0.8);
       if (big) { pot(x, z, 0.24, 0.42); bush(x, 1.2, z, rnd(0.55, 0.85), 230 * k, 0.2, 0.95); }
       else { pot(x, z, 0.15, 0.26); bush(x, 0.6, z, rnd(0.28, 0.4), 110 * k, 0.5, 0.65); }
       if (Math.random() < 0.6) { pot(-W + 0.08, z - 0.5, 0.1, 0.16, 0.74); bush(-W + 0.1, 1.06, z - 0.5, 0.24, 60 * k, 0.8, 0.5); }
